@@ -1,0 +1,49 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.cloud:spring-cloud-cluster-hazelcast:1.0.2.RELEASE')
+	compile('org.springframework.cloud:spring-cloud-starter-ribbon')
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
+	compile('org.springframework.boot:spring-boot-starter-jersey')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('com.google.maps:google-maps-services:0.1.18')
+	compile('com.hazelcast:hazelcast-all:3.8')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+	testCompile ('junit:junit:4.12')  
+	testCompile ('org.assertj:assertj-core:1.5.0')
+	testCompile ('org.assertj:assertj-joda-time:1.1.0')
+	testCompile ('org.assertj:assertj-guava:1.1.0') 
+	testCompile ('io.rest-assured:rest-assured:3.0.2')
+	testCompile ('com.google.code.gson:gson:2.6.2')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.RC1"
+	}
+}
